@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>股票行情</title>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <style type="text/css">
+    	.mui-bar{background-color: #f2ce28;}
+    	.mui-bar .mui-title{color: #fe0237;font-family: "微软雅黑";}
+    
+    	.header-th{position: fixed;width:100%;z-index: 1000;}
+    	#quote-content{padding-top: 41px;}
+    	.def-table-th{
+    		color: #5a5a5a;
+    		background-color: #fff;
+    		border-bottom: 1px solid rgba(200,200,200,.7);
+    		height: 40px;
+    		line-height: 40px;
+    		text-align: center;
+    		font-family: "微软雅黑";
+    		font-weight: bold;
+    		font-size: 14px;
+    	}
+    	.def-table-th .icon {
+		    vertical-align: middle;
+		    position: relative;
+		    top: -0.02rem;
+		}
+		.icon {
+		    background: url(data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==) no-repeat 0 0;
+		    background-size: 100% auto;
+		    display: inline-block;
+		    zoom: 1;
+		    overflow: hidden;
+		}
+    	.icon-spacer {
+		    display: inline-block;
+		}
+		.icon-sorting-desc {
+		    width: 5px;
+		    height: 11px;
+		    background-image: url(images/icon_sorting_desc.png);
+		}
+    	.def-table-tr{text-align: center;font-family: "微软雅黑";font-size: 14px;background-color: #fff;}
+    	.def-tal{text-align: left;padding-left: 30px;}
+    	.def-tar{height: 42px;line-height: 42px;}
+    	.def-tar div{width: 50%;margin: 0 auto;}
+    	.def-tal .name{display:block;color: #000000;}
+    	.def-tal .code{
+    		display: block;
+			font-size: 12px;
+			color: #5a5a5a;
+			margin-top: -4px;
+    	}
+    	.def-tar .zhangfu{color: red;}
+    </style>
+    
+</head>
+<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">涨幅榜</h1>
+	</header>
+	<div class="mui-content">
+		<div class="header-th">
+			<div class="mui-row def-table-th">
+				<div class="mui-col-xs-4">黄金品种</div>
+				<div class="mui-col-xs-4">最新价</div>
+				<div class="mui-col-xs-4" id="tapzf">涨跌幅<span class="icon-spacer"><i class="icon icon-sorting-desc"></i></span></div>
+			</div>    
+		</div>
+		<div id="quote-content">
+			<div class="mui-row def-table-tr">
+				<div class="mui-col-xs-4 def-tal">
+					<span class="name">--</span>
+					<span class="code">--</span>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="ZuiXinJia">--</div>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="zhangfu">--</div>
+				</div>
+			</div>
+			<div class="mui-row def-table-tr">
+				<div class="mui-col-xs-4 def-tal">
+					<span class="name">--</span>
+					<span class="code">--</span>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="ZuiXinJia">--</div>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="zhangfu">--</div>
+				</div>
+			</div>
+			<div class="mui-row def-table-tr">
+				<div class="mui-col-xs-4 def-tal">
+					<span class="name">--</span>
+					<span class="code">--</span>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="ZuiXinJia">--</div>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="zhangfu">--</div>
+				</div>
+			</div>
+			<div class="mui-row def-table-tr">
+				<div class="mui-col-xs-4 def-tal">
+					<span class="name">--</span>
+					<span class="code">--</span>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="ZuiXinJia">--</div>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="zhangfu">--</div>
+				</div>
+			</div>
+			<div class="mui-row def-table-tr">
+				<div class="mui-col-xs-4 def-tal">
+					<span class="name">--</span>
+					<span class="code">--</span>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="ZuiXinJia">--</div>
+				</div>
+				<div class="mui-col-xs-4 def-tar">
+					<div class="zhangfu">--</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="http://test.v2.api.edu3000.com/cloud-dzh/dzhauthtoken.js" type="text/javascript"></script>
+	<script src="js/mui.min.js"></script>
+    <script src="js/mui.extend.js"></script>
+	<script type="text/javascript" charset="UTF-8">
+    	var market = {
+			//输出json到页面
+			outputjson:function(jsonstr){
+				plog.log(jsonstr);
+				var obj = eval('(' + jsonstr + ')')
+				var data = obj.Data;
+				//股票集合
+				var RepDataStkData = data.RepDataStkData;
+				for(var i = 0;i<RepDataStkData.length;i++){
+					var quote = RepDataStkData[i];
+					plog.log(quote.Obj);
+					
+					var html = market.outputhtml(quote);
+					
+					var elem = document.getElementById(quote.Obj);
+					var elqc = document.getElementById("quote-content");
+					if(elem==undefined){
+						var divchild = document.createElement("div");
+						divchild.setAttribute("class","mui-row def-table-tr");
+						divchild.setAttribute("id",quote.Obj);
+						elqc.appendChild(divchild); 
+						elem = document.getElementById(quote.Obj);
+					}
+					elem.innerHTML = html;
+					
+					elem.style.backgroundColor = "#FEF7F6";
+					setTimeout(function(){
+						elem.style.backgroundColor = "#FFFFFF";
+					},1000);
+				}
+			},
+			outputhtml:function(obj){
+				//'<div class="mui-row def-table-tr" id="'+obj.Obj+'">'+
+				return  '	<div class="mui-col-xs-4 def-tal">'+
+					    '		<span class="name">'+obj.ZhongWenJianCheng+'</span> '+
+					    '		<span class="code">'+obj.Obj+'</span> '+
+						'	</div> '+
+						'	<div class="mui-col-xs-4 def-tar">'+
+						'		<div class="ZuiXinJia">'+ market.clearundefined(obj.ZuiXinJia) +'</div>'+
+						'	</div> '+
+						'	<div class="mui-col-xs-4 def-tar">'+
+						'		<div class="zhangfu">'+market.clearundefined(obj.ZhangFu)+'%</div>'+
+						'	</div> ';
+				//</div>
+			},
+			//替换undefined字符串
+			clearundefined:function(v){
+				return v==undefined?"--":v;
+			},
+			//点击涨跌幅排序 tapzf
+			clickzhangfu:function(){
+				
+			},
+		};  	
+		
+		/** WebSocket订阅 */
+		var socket = {
+			webws:null,
+			open:function(wsurl,sendtext,onmessge){
+				var ws = new WebSocket(wsurl);
+				ws.onopen = function(){
+				  console.log("open socket");
+				  ws.send(sendtext);
+				};
+				ws.onmessage = function(evt){
+					onmessge(evt.data);
+				};
+				ws.onclose = function(evt){
+				  console.log("WebSocketClosed!");
+				};
+				ws.onerror = function(evt){
+				  console.log("WebSocketError!");
+				};
+				socket.webws = ws;
+			},
+			send:function(text){
+				socket.webws.send(text);
+			}
+		};
+		
+		document.getElementById("quote-content").innerHTML = "";
+		
+		//0000000d:1460004387:3a01ece097366e12abc6e6729216eb232e3bdbb7
+		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token; 
+		var text = '/stkdata?obj=SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=0&mode=1&start=0&qid=market1';
+		socket.open(wsurl,text,function(blob){ //数据流
+			plog.log(blob);
+			var reader = new FileReader();
+			reader.onloadend = function(e){
+			    market.outputjson(e.target.result);
+			}
+			reader.readAsText(blob);
+		});
+		
+		
+    </script>
+</body>
+</html>
