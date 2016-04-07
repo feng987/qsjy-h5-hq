@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="GBK">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>è‚¡ç¥¨è¡Œæƒ…</title>
+    <title>»Æ½ğÆ·ÖÖĞĞÇé</title>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <style type="text/css">
     	.mui-bar{background-color: #f2ce28;}
-    	.mui-bar .mui-title{color: #fe0237;font-family: "å¾®è½¯é›…é»‘";}
+    	.mui-bar .mui-title{color: #fe0237;font-family: "Î¢ÈíÑÅºÚ";}
     
     	.header-th{position: fixed;width:100%;z-index: 1000;}
     	#quote-content{padding-top: 41px;}
@@ -18,7 +18,7 @@
     		height: 40px;
     		line-height: 40px;
     		text-align: center;
-    		font-family: "å¾®è½¯é›…é»‘";
+    		font-family: "Î¢ÈíÑÅºÚ";
     		font-weight: bold;
     		font-size: 14px;
     	}
@@ -42,7 +42,7 @@
 		    height: 11px;
 		    background-image: url(images/icon_sorting_desc.png);
 		}
-    	.def-table-tr{text-align: center;font-family: "å¾®è½¯é›…é»‘";font-size: 14px;background-color: #fff;}
+    	.def-table-tr{text-align: center;font-family: "Î¢ÈíÑÅºÚ";font-size: 14px;background-color: #fff;}
     	.def-tal{text-align: left;padding-left: 30px;}
     	.def-tar{height: 42px;line-height: 42px;}
     	.def-tar div{width: 50%;margin: 0 auto;}
@@ -58,16 +58,16 @@
     
 </head>
 <body>
-	<header class="mui-bar mui-bar-nav">
+	<header class="mui-bar mui-bar-nav" style="display: none;">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-	    <h1 class="mui-title">æ¶¨å¹…æ¦œ</h1>
+	    <h1 class="mui-title">ÕÇ·ù°ñ</h1>
 	</header>
-	<div class="mui-content">
+	<div class="mui-content" style="padding-top: 0px;">
 		<div class="header-th">
 			<div class="mui-row def-table-th">
-				<div class="mui-col-xs-4">é»„é‡‘å“ç§</div>
-				<div class="mui-col-xs-4">æœ€æ–°ä»·</div>
-				<div class="mui-col-xs-4" id="tapzf">æ¶¨è·Œå¹…<span class="icon-spacer"><i class="icon icon-sorting-desc"></i></span></div>
+				<div class="mui-col-xs-4">»Æ½ğÆ·ÖÖ</div>
+				<div class="mui-col-xs-4">×îĞÂ¼Û</div>
+				<div class="mui-col-xs-4" id="tapzf">ÕÇµø·ù<span class="icon-spacer"><i class="icon icon-sorting-desc"></i></span></div>
 			</div>    
 		</div>
 		<div id="quote-content">
@@ -139,12 +139,12 @@
     <script src="js/mui.extend.js"></script>
 	<script type="text/javascript" charset="UTF-8">
     	var market = {
-			//è¾“å‡ºjsonåˆ°é¡µé¢
+			//Êä³öjsonµ½Ò³Ãæ
 			outputjson:function(jsonstr){
 				plog.log(jsonstr);
 				var obj = eval('(' + jsonstr + ')')
 				var data = obj.Data;
-				//è‚¡ç¥¨é›†åˆ
+				//¹ÉÆ±¼¯ºÏ
 				var RepDataStkData = data.RepDataStkData;
 				for(var i = 0;i<RepDataStkData.length;i++){
 					var quote = RepDataStkData[i];
@@ -183,17 +183,17 @@
 						'	</div> ';
 				//</div>
 			},
-			//æ›¿æ¢undefinedå­—ç¬¦ä¸²
+			//Ìæ»»undefined×Ö·û´®
 			clearundefined:function(v){
 				return v==undefined?"--":v;
 			},
-			//ç‚¹å‡»æ¶¨è·Œå¹…æ’åº tapzf
+			//µã»÷ÕÇµø·ùÅÅĞò tapzf
 			clickzhangfu:function(){
 				
 			},
 		};  	
 		
-		/** WebSocketè®¢é˜… */
+		/** WebSocket¶©ÔÄ */
 		var socket = {
 			webws:null,
 			open:function(wsurl,sendtext,onmessge){
@@ -222,8 +222,8 @@
 		
 		//0000000d:1460004387:3a01ece097366e12abc6e6729216eb232e3bdbb7
 		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token; 
-		var text = '/stkdata?obj=SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=0&mode=1&start=0&qid=market1';
-		socket.open(wsurl,text,function(blob){ //æ•°æ®æµ
+		var text = '/stkdata?obj=SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=1&mode=1&start=0&qid=market1';
+		socket.open(wsurl,text,function(blob){ //Êı¾İÁ÷
 			plog.log(blob);
 			var reader = new FileReader();
 			reader.onloadend = function(e){
