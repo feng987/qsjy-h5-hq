@@ -42,7 +42,7 @@
 		    height: 11px;
 		    background-image: url(images/icon_sorting_desc.png);
 		}
-    	.def-table-tr{text-align: center;font-family: "Î¢ÈíÑÅºÚ";font-size: 14px;background-color: #fff;}
+    	.def-table-tr{text-align: center;font-family: "Î¢ÈíÑÅºÚ";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;}
     	.def-tal{text-align: left;padding-left: 30px;}
     	.def-tar{height: 42px;line-height: 42px;}
     	.def-tar div{width: 50%;margin: 0 auto;}
@@ -163,10 +163,10 @@
 					}
 					elem.innerHTML = html;
 					
-					elem.style.backgroundColor = "#FEF7F6";
+					elem.style.backgroundColor = "#FFFFFF";
 					setTimeout(function(){
-						elem.style.backgroundColor = "#FFFFFF";
-					},1000);
+						elem.style.backgroundColor = "#FEF7F6";	
+					},200);
 				}
 			},
 			outputhtml:function(obj){
