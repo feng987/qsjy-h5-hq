@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Chart</title>
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+<div id="chart"></div>
+<script src="scripts/main.js"></script>
+<script>
+  (function() {
+    var dataProvider = new DataProvider();
+    var doAction = function(type, data) {
+      data = data || {};
+//      var searchs = [];
+//      for (var key in data) {
+//        var value = data[key];
+//        searchs.push(key + '=' + value);
+//      }
+//      var url = 'dzh://' + type + '?' + searchs.join('&');
+//      window.location.href = url;
+//      window.prompt(JSON.stringify({type, data}));
+      dataProvider.request('/message', {type: 'html', message: JSON.stringify(data)});
+    };
+
+    var tooltip = function(data) {
+      doAction('tooltip', data);
+    };
+
+    var klineTooltip = function(data) {
+      data.type = 'kline';
+      tooltip(data);
+    };
+
+    var minTooltip = function(data) {
+      data.type = 'min';
+      tooltip(data);
+    };
+
+    var container = document.getElementById('chart');
+    var canvas = new Canvas(container, {
+      eventListener(event) {
+        dataProvider.request('/message', {type: 'html', message: JSON.stringify({type: event.type})});
+      }
+    });
+
+    canvas.showKline = function(obj, period) {
+      var key = ['kline', obj, period].join('_');
+      this._chartMap = this._chartMap || {};
+      var klineChart = this._chartMap[key];
+      if (!klineChart) {
+        klineChart = new KlineChart(new DataProvider({ obj: obj, period: period }));
+        klineChart.drawTooltip = klineTooltip;
+        this._chartMap[key] = klineChart;
+      }
+//      console.log(key);
+      this.show(klineChart);
+    };
+
+    canvas.showMin = function(obj) {
+      var key = ['min', obj].join('_');
+      this._chartMap = this._chartMap || {};
+      var minChart = this._chartMap[key];
+      if (!minChart) {
+        minChart = new MinChart(new DataProvider({ obj: obj }));
+        minChart.drawTooltip = minTooltip;
+        this._chartMap[key] = minChart;
+      }
+//      console.log(key);
+      this.show(minChart);
+    };
+
+    canvas.reset = (function(origFun) {
+      return function() {
+        canvas._chartMap = {};
+        origFun.call(canvas);
+      }
+    })(canvas.reset);
+
+    window.canvas = canvas;
+    window.onerror = function(error) {
+      document.write(error);
+    };
+
+//    console.log('loaded');
+
+    window.init = function(address, type, obj, period) {
+      window.DataProvider.init(address);
+      window.show(type, obj, period);
+    };
+
+    window.show = function(type, obj, period) {
+      if (type === 'min') {
+        canvas.showMin(obj);
+      } else if (type === 'kline') {
+        canvas.showKline(obj, period);
+      }
+    };
+  })();
+</script>
+</body>
+</html>

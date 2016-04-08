@@ -30,3 +30,20 @@ var pdate = {
 	}
 }
 
+//Pine 自定义功能函数
+var PineFun = {
+	getRequestValue:function(key){
+		//location.search是从当前URL的?号开始的字符串 例如：http://www.51job.com/viewthread.jsp?tid=22720 它的search就是?tid=22720
+    	var str=window.location.search;
+	    if (str.indexOf(key)!=-1){
+	        var pos_start=str.indexOf(key)+key.length+1;
+	        var pos_end=str.indexOf("&",pos_start);
+	        if(pos_end>0){ return str.substring(pos_start,pos_end); }
+	        pos_end=str.indexOf("#",pos_start);
+	        if(pos_end>0){ return str.substring(pos_start,pos_end); }
+	        return str.substring(pos_start);
+	    }
+	    return '';
+	},
+};
+

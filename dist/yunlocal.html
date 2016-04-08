@@ -1,0 +1,6 @@
+<!doctype html><html lang=""><head><meta charset="utf-8"><meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1"><title>h5 chart</title><link rel="apple-touch-icon" href="apple-touch-icon.png"><!-- Place favicon.ico in the root directory --><link rel="stylesheet" href="styles/main.css"></head><body><!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]--><div id="chart">hello world</div><script src="scripts/main.js"></script><script>DataProvider.init('ws://10.0.0.12:9999/');
+  var canvas = new Canvas(document.getElementById('chart'));
+  var minChart = new MinChart(new DataProvider({ obj: 'SH000003' }));
+  canvas.show(minChart);</script></body></html>

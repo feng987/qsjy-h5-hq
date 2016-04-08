@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>k线</title>
+	<link rel="stylesheet" href="styles/main.css"></head><body><div id="chart"></div>
+		
+	<script src="scripts/main.js"></script>
+	<script>DataProvider.init('ws://v2.yundzh.com/ws?token=00000017:1460107219:80f9552580fda621f88470df998c9044187f5f67');
+  var canvas = new Canvas(document.getElementById('chart'));
+  var klineChart = new KlineChart(new DataProvider({ obj: 'SH000001', period: '1min' }));
+  canvas.show(klineChart);</script>
+	
+	
+	</body></html>

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="">
+	<head>
+		<meta charset="utf-8">
+			<meta name="description" content=""><meta name="viewport" content="width=device-width,initial-scale=1">
+				<title>分时</title>
+				<link rel="stylesheet" href="styles/main.css">
+		
+	</head>
+	<body><!--[if lt IE 10]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]--><div id="chart"></div>
+
+<script src="../js/mui.extend.js"></script>
+<script src="scripts/main.js"></script>
+<script>DataProvider.init('ws://v2.yundzh.com/ws?token='+PineFun.getRequestValue("token"));
+  var canvas = new Canvas(document.getElementById('chart'));
+  var minChart = new MinChart(new DataProvider({ obj: PineFun.getRequestValue("obj") }));
+  canvas.show(minChart);</script>
+	</body>
+
+</html>
