@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="GBK">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>»Æ½ğÆ·ÖÖĞĞÇé</title>
+    <title>é»„é‡‘å“ç§è¡Œæƒ…</title>
+    <script src="http://test.v2.api.edu3000.com/cloud-dzh/dzhauthtoken.js" type="text/javascript"></script>
     <link href="css/mui.min.css" rel="stylesheet"/>
     <style type="text/css">
     	.mui-bar{background-color: #f2ce28;}
-    	.mui-bar .mui-title{color: #fe0237;font-family: "Î¢ÈíÑÅºÚ";}
+    	.mui-bar .mui-title{color: #fe0237;font-family: "å¾®è½¯é›…é»‘";}
     
     	.header-th{position: fixed;width:100%;z-index: 1000;}
     	#quote-content{padding-top: 41px;}
@@ -18,7 +19,7 @@
     		height: 40px;
     		line-height: 40px;
     		text-align: center;
-    		font-family: "Î¢ÈíÑÅºÚ";
+    		font-family: "å¾®è½¯é›…é»‘";
     		font-weight: bold;
     		font-size: 14px;
     	}
@@ -42,7 +43,7 @@
 		    height: 11px;
 		    background-image: url(images/icon_sorting_desc.png);
 		}
-    	.def-table-tr{text-align: center;font-family: "Î¢ÈíÑÅºÚ";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;}
+    	.def-table-tr{text-align: center;font-family: "å¾®è½¯é›…é»‘";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;}
     	.def-tal{text-align: left;padding-left: 30px;}
     	.def-tar{height: 42px;line-height: 42px;}
     	.def-tar div{width: 50%;margin: 0 auto;}
@@ -60,14 +61,14 @@
 <body>
 	<header class="mui-bar mui-bar-nav" style="display: none;">
 	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-	    <h1 class="mui-title">ÕÇ·ù°ñ</h1>
+	    <h1 class="mui-title">æ¶¨å¹…æ¦œ</h1>
 	</header>
 	<div class="mui-content" style="padding-top: 0px;">
 		<div class="header-th">
 			<div class="mui-row def-table-th">
-				<div class="mui-col-xs-4">»Æ½ğÆ·ÖÖ</div>
-				<div class="mui-col-xs-4">×îĞÂ¼Û</div>
-				<div class="mui-col-xs-4" id="tapzf">ÕÇµø·ù<span class="icon-spacer"><i class="icon icon-sorting-desc"></i></span></div>
+				<div class="mui-col-xs-4">é»„é‡‘å“ç§</div>
+				<div class="mui-col-xs-4">æœ€æ–°ä»·</div>
+				<div class="mui-col-xs-4" id="tapzf">æ¶¨è·Œå¹…<span class="icon-spacer"><i class="icon icon-sorting-desc"></i></span></div>
 			</div>    
 		</div>
 		<div id="quote-content">
@@ -134,17 +135,17 @@
 		</div>
 	</div>
 	
-	<script src="http://test.v2.api.edu3000.com/cloud-dzh/dzhauthtoken.js" type="text/javascript"></script>
+	
 	<script src="js/mui.min.js"></script>
     <script src="js/mui.extend.js"></script>
 	<script type="text/javascript" charset="UTF-8">
     	var market = {
-			//Êä³öjsonµ½Ò³Ãæ
+			//è¾“å‡ºjsonåˆ°é¡µé¢
 			outputjson:function(jsonstr){
 				plog.log(jsonstr);
 				var obj = eval('(' + jsonstr + ')')
 				var data = obj.Data;
-				//¹ÉÆ±¼¯ºÏ
+				//è‚¡ç¥¨é›†åˆ
 				var RepDataStkData = data.RepDataStkData;
 				for(var i = 0;i<RepDataStkData.length;i++){
 					var quote = RepDataStkData[i];
@@ -183,17 +184,29 @@
 						'	</div> ';
 				//</div>
 			},
-			//Ìæ»»undefined×Ö·û´®
+			//æ›¿æ¢undefinedå­—ç¬¦ä¸²
 			clearundefined:function(v){
 				return v==undefined?"--":v;
 			},
-			//µã»÷ÕÇµø·ùÅÅĞò tapzf
+			//ç‚¹å‡»æ¶¨è·Œå¹…æ’åº tapzf
 			clickzhangfu:function(){
 				
 			},
+			//ç‚¹å‡»æŸ¥çœ‹Kçº¿å›¾
+			clickrowtokline:function(){
+				mui("#quote-content").on('tap','.def-table-tr',function(){
+					var url = "stock.html?obj="+this.getAttribute("id").replace("+","%2B");
+				  	mui.openWindow({
+				  		url:url,
+				  		id:url
+				  	});
+				});
+			}
 		};  	
 		
-		/** WebSocket¶©ÔÄ */
+		market.clickrowtokline();
+		
+		/** WebSocketè®¢é˜… */
 		var socket = {
 			webws:null,
 			open:function(wsurl,sendtext,onmessge){
@@ -223,7 +236,7 @@
 		//0000000d:1460004387:3a01ece097366e12abc6e6729216eb232e3bdbb7
 		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token; 
 		var text = '/stkdata?obj=SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=1&mode=1&start=0&qid=market1';
-		socket.open(wsurl,text,function(blob){ //Êı¾İÁ÷
+		socket.open(wsurl,text,function(blob){ //æ•°æ®æµ
 			plog.log(blob);
 			var reader = new FileReader();
 			reader.onloadend = function(e){

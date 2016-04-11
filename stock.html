@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html style="font-size: 58.5938px;">
 <head>
-    <meta charset="GBK">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-    <title>¸ö¹ÉÏêÇé</title>
+    <title>ä¸ªè‚¡è¯¦æƒ…</title>
     <link href="css/mui.min.css" rel="stylesheet"/>
     
     <link type="text/css" media="all" rel="stylesheet" href="css/base.css">
@@ -24,50 +24,48 @@
 					</div>
 				</div>
 				<div class="sk-board-special">
-					<div><div class="sk-label">½ñ¿ª</div><div class="sk-value" id="KaiPanJia">6.61</div></div>
-					<div><div class="sk-label">×òÊÕ</div><div class="sk-value" id="ZuoShou">6.55</div></div>
-					<div><div class="sk-label">³É½»Á¿</div><div class="sk-value" id="ChengJiaoLiang">53.27ÍòÊÖ</div></div>
-					<div><div class="sk-label">»»ÊÖÂÊ</div><div class="sk-value" id="HuanShou">10.82%</div></div>
+					<div><div class="sk-label">ä»Šå¼€</div><div class="sk-value" id="KaiPanJia">6.61</div></div>
+					<div><div class="sk-label">æ˜¨æ”¶</div><div class="sk-value" id="ZuoShou">6.55</div></div>
+					<div><div class="sk-label">æˆäº¤é‡</div><div class="sk-value" id="ChengJiaoLiang">53.27ä¸‡æ‰‹</div></div>
+					<div><div class="sk-label">æ¢æ‰‹ç‡</div><div class="sk-value" id="HuanShou">10.82%</div></div>
 					
 					<!--<div class="sk-board-addstock">
-						<a href="javascript:;" class="addstock" title="¼ÓÈë×ÔÑ¡¹É"><span>+</span></a>
+						<a href="javascript:;" class="addstock" title="åŠ å…¥è‡ªé€‰è‚¡"><span>+</span></a>
 					</div>-->
 				</div>
 				<div class="sk-board-market clearfix">
-					<div><div class="sk-label">×î¸ß</div><div class="sk-value" id="ZuiGaoJia">4.47</div></div>
-					<div><div class="sk-label">×îµÍ</div><div class="sk-value" id="ZuiDiJia">4.03</div></div>
-					<div><div class="sk-label">³É½»¶î</div><div class="sk-value" id="ChengJiaoE">4.03ÒÚ</div></div>
+					<div><div class="sk-label">æœ€é«˜</div><div class="sk-value" id="ZuiGaoJia">4.47</div></div>
+					<div><div class="sk-label">æœ€ä½</div><div class="sk-value" id="ZuiDiJia">4.03</div></div>
+					<div><div class="sk-label">æˆäº¤é¢</div><div class="sk-value" id="ChengJiaoE">4.03äº¿</div></div>
 
-					<div><div class="sk-label">ÄÚÅÌ</div><div class="sk-value" id="NeiPan">27.13Íò</div></div>
-					<div><div class="sk-label">ÍâÅÌ</div><div class="sk-value" id="WaiPan">26.13Íò</div></div>
-					<div><div class="sk-label">×ÜÊĞÖµ</div><div class="sk-value" id="ZongShiZhi">35.5ÒÚ</div></div>
+					<div><div class="sk-label">å†…ç›˜</div><div class="sk-value" id="NeiPan">27.13ä¸‡</div></div>
+					<div><div class="sk-label">å¤–ç›˜</div><div class="sk-value" id="WaiPan">26.13ä¸‡</div></div>
+					<div><div class="sk-label">æ€»å¸‚å€¼</div><div class="sk-value" id="ZongShiZhi">35.5äº¿</div></div>
 
-					<div><div class="sk-label">ÊĞÓ¯ÂÊ</div><div class="sk-value" id="ShiYingLv">--</div></div>
-					<div><div class="sk-label">Õñ·ù</div><div class="sk-value" id="ZhenFu">9.38%</div></div>
-					<div><div class="sk-label">Á÷Í¨ÊĞÖµ</div><div class="sk-value" id="LiuTongShiZhi">26.18ÒÚ</div></div>
+					<div><div class="sk-label">å¸‚ç›ˆç‡</div><div class="sk-value" id="ShiYingLv">--</div></div>
+					<div><div class="sk-label">æŒ¯å¹…</div><div class="sk-value" id="ZhenFu">9.38%</div></div>
+					<div><div class="sk-label">æµé€šå¸‚å€¼</div><div class="sk-value" id="LiuTongShiZhi">26.18äº¿</div></div>
 				</div>
 			</div>
 			<!-- sk-board -->
-			<!-- KÏß -->
+			<!-- Kçº¿ -->
 			<div class="kline-box clearfix block-hr">
                 <!-- kline -->
                 <div class="kline">
-                    <ul class="tabs tab-a flex">
-                        <li class="active"><a href="javascript:void(0)" hidefocus="true">·ÖÊ±</a></li>
-                        <li class=""><a href="javascript:void(0)" hidefocus="true">ÈÕK</a></li>
-                        <li class=""><a href="javascript:void(0)" hidefocus="true">ÖÜK</a></li>
-                        <li class=""><a href="javascript:void(0)" hidefocus="true">ÔÂK</a></li>
+                    <ul class="tabs tab-a flex" id="kline-tab">
+                        <li class="active" href="min"><a href="javascript:void(0)">åˆ†æ—¶</a></li>
+                        <li class="" href="1day"><a href="javascript:void(0)">æ—¥K</a></li>
+                        <li class="" href="week"><a href="javascript:void(0)">å‘¨K</a></li>
+                        <li class="" href="month"><a href="javascript:void(0)">æœˆK</a></li>
                     </ul>
                     <div class="panel" style="display: block;">
-                    	<iframe id="FenShiTu" src="dist/min.html" width="100%" height="300px" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>
+                    	<div id="chart"></div>
+                    	<!--<iframe id="FenShiTu" src="" width="100%" height="400px" frameborder="no" border="0" marginwidth="0" marginheight="0" scrolling="no" allowtransparency="yes"></iframe>-->
                     </div>
-                    <div class="panel" style="display: none;"></div>
-                    <div class="panel" style="display: none;">3</div>
-                    <div class="panel" style="display: none;">4</div>
                 </div>
                 <!-- kline -->
             </div>
-            <!-- KÏß -->
+            <!-- Kçº¿ -->
         </section>
         </div>
 	
@@ -75,7 +73,7 @@
     <script src="js/mui.extend.js"></script>
 	<script type="text/javascript" charset="UTF-8">
     	
-		/** WebSocket¶©ÔÄ */
+		/** WebSocketè®¢é˜… */
 		var socket = {
 			webws:null,
 			open:function(wsurl,sendtext,onmessge){
@@ -103,24 +101,23 @@
 		
 		//0000000d:1460004387:3a01ece097366e12abc6e6729216eb232e3bdbb7
 		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token; 
-		var obj = PineFun.getRequestValue("obj"); //'SGAg(T%2BD)';
-		//¸ö¹ÉĞÅÏ¢×Ö¶Î
+		var objparam = PineFun.getRequestValue("obj"); //'SGAg(T%2BD)';
+		//document.getElementById("FenShiTu").setAttribute("src","dist/min.html?obj="+obj+"&token="+dzh_token);
+		//ä¸ªè‚¡ä¿¡æ¯å­—æ®µ
 		var field = 'ZhongWenJianCheng,ZuiXinJia,ZhangFu,ZhenFu,KaiPanJia,ZuoShou,ChengJiaoLiang,HuanShou,'
 			field += 'ZuiGaoJia,NeiPan,ShiYingLv,ZuiDiJia,ChengJiaoE,WaiPan,ZongShiZhi,LiuTongShiZhi';
-		var text = '/stkdata?obj='+obj+'&field='+field+'&sub=1&mode=1&start=0&qid=market2';
-		socket.open(wsurl,text,function(blob){ //Êı¾İÁ÷
+		var text = '/stkdata?obj='+objparam+'&field='+field+'&sub=1&mode=1&start=0&qid=market2';
+		socket.open(wsurl,text,function(blob){ //æ•°æ®æµ
 			var reader = new FileReader();
 			reader.onloadend = function(e){
 			    var jsonstr = e.target.result;
 			    plog.log(jsonstr);
 				var obj = eval('(' + jsonstr + ')')
 				var data = obj.Data;
-				//¹ÉÆ±¼¯ºÏ
+				//è‚¡ç¥¨é›†åˆ
 				var RepDataStkData = data.RepDataStkData;
 				for(var i = 0;i<RepDataStkData.length;i++){
 					var quote = RepDataStkData[i];
-					
-					document.getElementById("FenShiTu").setAttribute("src","dist/min.html?obj="+quote.Obj+"&token="+dzh_token);
 					
 					document.getElementsByClassName("realprice")[0].innerText = quote.ZuiXinJia;
 					document.getElementsByClassName("changeAmt")[0].innerText = (quote.ZhangFu>0?"+"+quote.ZhangFu:quote.ZhangFu)+"%";
@@ -128,20 +125,20 @@
 					
 					setText("KaiPanJia",quote.KaiPanJia,'');
 					setText("ZuoShou",quote.ZuoShou,'');
-					setText("ChengJiaoLiang",(quote.ChengJiaoLiang/10000).toFixed(2),"Íò");
+					setText("ChengJiaoLiang",(quote.ChengJiaoLiang/10000).toFixed(2),"ä¸‡");
 					setText("HuanShou",quote.HuanShou,'');
 					
 					setText("ZuiGaoJia",quote.ZuiGaoJia,'');
 					setText("ZuiDiJia",quote.ZuiDiJia,'');
-					setText("ChengJiaoE",(quote.ChengJiaoE/100000000).toFixed(2),"ÒÚ");
+					setText("ChengJiaoE",(quote.ChengJiaoE/100000000).toFixed(2),"äº¿");
 					
-					setText("NeiPan",(quote.NeiPan/10000).toFixed(2),"Íò");
-					setText("WaiPan",(quote.WaiPan/10000).toFixed(2),"Íò");
-					setText("ZongShiZhi",(quote.ZongShiZhi>0?(quote.ZongShiZhi/10000).toFixed(2):quote.ZongShiZhi),"ÒÚ");
+					setText("NeiPan",(quote.NeiPan/10000).toFixed(2),"ä¸‡");
+					setText("WaiPan",(quote.WaiPan/10000).toFixed(2),"ä¸‡");
+					setText("ZongShiZhi",(quote.ZongShiZhi>0?(quote.ZongShiZhi/10000).toFixed(2):quote.ZongShiZhi),"äº¿");
 					
-					setText("ShiYingLv",quote.ShiYingLv,'%');
+					setText("ShiYingLv",quote.ShiYingLv>0?(quote.ShiYingLv).toFixed(2):quote.ShiYingLv,'%');
 					setText("ZhenFu",quote.ZhenFu,'%')
-					setText("LiuTongShiZhi",(quote.LiuTongShiZhi>0?(quote.LiuTongShiZhi/10000).toFixed(2):quote.LiuTongShiZhi),"ÒÚ");
+					setText("LiuTongShiZhi",(quote.LiuTongShiZhi>0?(quote.LiuTongShiZhi/10000).toFixed(2):quote.LiuTongShiZhi),"äº¿");
 				}
 				
 			}
@@ -152,7 +149,35 @@
 			document.getElementById(id).innerText=(val==""||val==null||val==undefined||val==NaN?"--":val+dw);
 		}
 		
+		//Kçº¿tap
+		mui("#kline-tab").on('tap','li',function(){
+			document.querySelector(".active").setAttribute("class","");
+			this.setAttribute("class","active");
+		  	//document.getElementById("FenShiTu").setAttribute("src",this.getAttribute("href")+"&obj="+obj+"&token="+dzh_token);
+		  	klinechart(this.getAttribute("href"));
+		});
 		
     </script>
+    <link rel="stylesheet" href="dist/styles/main.css">
+    <script src="dist/scripts/main.js"></script>
+	<script type="text/javascript">
+		DataProvider.init('ws://v2.yundzh.com/ws?token='+dzh_token);
+  		var canvas = new Canvas(document.getElementById('chart'),{height:400});
+  		
+  		function klinechart(period){
+  			if("min"==period){
+  				minchart();
+  			}else{
+  				var klineChart = new KlineChart(new DataProvider({ obj: objparam, period:period}));
+  				canvas.show(klineChart);	
+  			}
+  		}
+  		minchart();//é»˜è®¤æ˜¾ç¤ºåˆ†æ—¶å›¾
+  		function minchart(){
+  			var minChart = new MinChart(new DataProvider({ obj:objparam}));
+  			canvas.show(minChart);
+  		}
+	</script>
+  	
 </body>
 </html>
