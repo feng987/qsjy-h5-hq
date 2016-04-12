@@ -44,10 +44,10 @@
 		    background-image: url(images/icon_sorting_desc.png);
 		}
     	.def-table-tr{text-align: center;font-family: "微软雅黑";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;border-left: 4px #FFF solid;}
-    	.def-tal{text-align: left;padding-left: 30px;}
-    	.def-tar{height: 42px;line-height: 42px;}
-    	.def-tar div{width: 50%;margin: 0 auto;}
-    	.def-tal .name{display:block;color: #000000;}
+    	.def-tal{text-align: center;}
+    	.def-tar,.def-tal{height: 42px;line-height: 42px;}
+    	.def-tar div{width: 55%;margin: 0 auto;}
+    	.def-tal .name{display:block;color: #000000;font-size: 16px;font-family: 微软雅黑;}
     	.def-tal .code{
     		display: block;
 			font-size: 12px;
@@ -80,7 +80,7 @@
 			<div class="mui-row def-table-tr">
 				<div class="mui-col-xs-4 def-tal">
 					<span class="name">--</span>
-					<span class="code">--</span>
+					<!--<span class="code">--</span>-->
 				</div>
 				<div class="mui-col-xs-4 def-tar">
 					<div class="ZuiXinJia">--</div>
@@ -144,88 +144,6 @@
 	<script src="js/mui.min.js"></script>
     <script src="js/mui.extend.js"></script>
 	<script type="text/javascript" charset="UTF-8">
-    	var market = {
-			//输出json到页面
-			outputjson:function(jsonstr){
-				plog.log(jsonstr);
-				var obj = eval('(' + jsonstr + ')')
-				var data = obj.Data;
-				//股票集合
-				var RepDataStkData = data.RepDataStkData;
-				for(var i = 0;i<RepDataStkData.length;i++){
-					var quote = RepDataStkData[i];
-					plog.log(quote.Obj);
-					
-					var html = market.outputhtml(quote);
-					
-					var elem = document.getElementById(quote.Obj);
-					var elqc = document.getElementById("quote-content");
-					if(elem==undefined){
-						var divchild = document.createElement("div");
-						divchild.setAttribute("class","mui-row def-table-tr");
-						divchild.setAttribute("id",quote.Obj);
-						elqc.appendChild(divchild); 
-						elem = document.getElementById(quote.Obj);
-					}
-					elem.innerHTML = html;
-					
-					elem.style.backgroundColor = "#FFFFFF";
-					elem.style.borderLeftColor = (quote.ZhangFu!=undefined?(quote.ZhangFu>=0?"red":"green"):"#999");
-					setTimeout(function(){
-						elem.style.backgroundColor = "#FEF7F6";	
-					},200);
-				}
-			},
-			outputhtml:function(obj){
-				var zhangfuval = market.clearundefined(obj.ZhangFu);
-				var stylecolor,stylezxj;
-				if(zhangfuval=='--'){
-					stylecolor = "background:#FFF;color:#333;"; 
-					stylezxj = "color:#333;";
-				}else if(zhangfuval>=0){
-					stylecolor = "background:red;color:#f1f1f1;";
-					stylezxj = "color:red;";
-				}else if(zhangfuval<0){
-					stylecolor = "background:green;color:#f1f1f1;";
-					stylezxj = "color:green;";
-				}
-				zhangfuval = zhangfuval=='--'?'--':zhangfuval+'%';
-				
-				//'<div class="mui-row def-table-tr" id="'+obj.Obj+'">'+
-				return  '	<div class="mui-col-xs-4 def-tal">'+
-					    '		<span class="name">'+obj.ZhongWenJianCheng+'</span> '+
-					    '		<span class="code">'+obj.Obj+'</span> '+
-						'	</div> '+
-						'	<div class="mui-col-xs-4 def-tar">'+
-						'		<div class="ZuiXinJia" style="'+stylezxj+'">'+ market.clearundefined(obj.ZuiXinJia) +'</div>'+
-						'	</div> '+
-						'	<div class="mui-col-xs-4 def-tar">'+
-						'		<div class="zhangfu" style="'+stylecolor+'">'+zhangfuval+'</div>'+
-						'	</div> ';
-				//</div>
-			},
-			//替换undefined字符串
-			clearundefined:function(v){
-				return v==undefined?"--":v;
-			},
-			//点击涨跌幅排序 tapzf
-			clickzhangfu:function(){
-				
-			},
-			//点击查看K线图
-			clickrowtokline:function(){
-				mui("#quote-content").on('tap','.def-table-tr',function(){
-					var url = "stock.html?obj="+this.getAttribute("id").replace("+","%2B");
-				  	mui.openWindow({
-				  		url:url,
-				  		id:url
-				  	});
-				});
-			}
-		};  	
-		
-		market.clickrowtokline();
-		
 		/** WebSocket订阅 */
 		var socket = {
 			webws:null,
@@ -252,10 +170,102 @@
 		};
 		
 		document.getElementById("quote-content").innerHTML = "";
+	
+	
+	
+    	var market = {
+			//输出json到页面
+			outputjson:function(jsonstr){
+				plog.log(jsonstr);
+				var obj = eval('(' + jsonstr + ')')
+				var data = obj.Data;
+				//股票集合
+				var RepDataStkData = data.RepDataStkData;
+				for(var i = 0;i<RepDataStkData.length;i++){
+					var quote = RepDataStkData[i];
+					plog.log(quote.Obj);
+					
+					var html = market.outputhtml(quote);
+					
+					var elem = document.getElementById(quote.Obj);
+					var elqc = document.getElementById("quote-content");
+					if(elem==undefined){
+						var divchild = document.createElement("div");
+						divchild.setAttribute("class","mui-row def-table-tr");
+						divchild.setAttribute("id",quote.Obj);
+						elqc.appendChild(divchild); 
+						elem = document.getElementById(quote.Obj);
+					}
+					elem.innerHTML = html;
+					
+					elem.style.borderLeftColor = (quote.ZhangFu!=undefined?(quote.ZhangFu>=0?"red":"green"):"#999");
+					if(3>RepDataStkData.length){
+						elem.style.backgroundColor = "#FEF7F6";
+						setTimeout(function(){
+							elem.style.backgroundColor = "#FFFFFF";	
+						},800);
+						
+					}
+				}
+			},
+			outputhtml:function(obj){
+				var zhangfuval = market.clearundefined(obj.ZhangFu);
+				var stylecolor,stylezxj;
+				if(zhangfuval=='--'){
+					stylecolor = "background:#FFF;color:#333;"; 
+					stylezxj = "color:#333;";
+				}else if(zhangfuval>=0){
+					stylecolor = "background:red;color:#f1f1f1;";
+					stylezxj = "color:red;";
+				}else if(zhangfuval<0){
+					stylecolor = "background:green;color:#f1f1f1;";
+					stylezxj = "color:green;";
+				}
+				zhangfuval = zhangfuval=='--'?'--':zhangfuval+'%';
+				
+				//'<div class="mui-row def-table-tr" id="'+obj.Obj+'">'+
+				return  '	<div class="mui-col-xs-4 def-tal">'+
+					    '		<div class="name">'+obj.ZhongWenJianCheng+'</div> '+
+					    //'		<span class="code">'+obj.Obj+'</span> '+
+						'	</div> '+
+						'	<div class="mui-col-xs-4 def-tar">'+
+						'		<div class="ZuiXinJia" style="'+stylezxj+'">'+ market.clearundefined(obj.ZuiXinJia) +'</div>'+
+						'	</div> '+
+						'	<div class="mui-col-xs-4 def-tar">'+
+						'		<div class="zhangfu" style="'+stylecolor+'">'+zhangfuval+'</div>'+
+						'	</div> ';
+				//</div>
+			},
+			//替换undefined字符串
+			clearundefined:function(v){
+				return v==undefined?"--":v;
+			},
+			//点击涨跌幅排序 tapzf
+			clickzhangfu:function(id,obj){
+				document.getElementById(id).addEventListener("tap",function(){
+					//alert(0);
+					document.getElementById("quote-content").innerHTML = "";
+					socket.send("/cancel?qid=market1");
+					socket.send("/stkdata?obj="+obj+"&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=1&mode=1&start=0&qid=market1&orderby=ZhangFu&desc=true");
+				});
+			},
+			//点击查看K线图
+			clickrowtokline:function(){
+				mui("#quote-content").on('tap','.def-table-tr',function(){
+					var url = "stock.html?obj="+this.getAttribute("id").replace("+","%2B");
+				  	mui.openWindow({
+				  		url:url,
+				  		id:url
+				  	});
+				});
+			}
+		};  	
+		
 		
 		//0000000d:1460004387:3a01ece097366e12abc6e6729216eb232e3bdbb7
-		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token; 
-		var text = '/stkdata?obj=SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=1&mode=1&start=0&qid=market1';
+		var wsurl = 'ws://v2.yundzh.com/ws?token='+dzh_token;
+		var objtext = "SGAg(T%2BD),SGAu(T%2BD),SGAu(T%2BN1),SGAu(T%2BN1),SGmAu(T%2BD),SGAg99.9,SGAg99.99,SGAu100g,SGAu50g,SGAu99.5,SGAu99.95,SGAu99.99,SGPt99.95,SGiAu100g,SGiAu99.5,SGiAu99.99";
+		var text = '/stkdata?obj='+objtext+'&field=ZhongWenJianCheng,ZuiXinJia,ZhangFu&sub=1&mode=1&start=0&qid=market1';
 		socket.open(wsurl,text,function(blob){ //数据流
 			plog.log(blob);
 			var reader = new FileReader();
@@ -264,6 +274,11 @@
 			}
 			reader.readAsText(blob);
 		});
+		
+		
+		market.clickrowtokline(); //行绑定点击事件进入行情页
+		market.clickzhangfu("tapzf",objtext); //点击排序
+		
 		
 		
     </script>

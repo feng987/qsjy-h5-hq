@@ -5,7 +5,7 @@
 //日志输入记录
 var plog = {
 	log:function(v){
-		console.log(pdate.currentFormatDate()+" - "+v);
+		//console.log(pdate.currentFormatDate()+" - "+v);
 	}
 };
 
