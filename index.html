@@ -14,7 +14,7 @@
     	#quote-content{padding-top: 41px;}
     	.def-table-th{
     		color: #5a5a5a;
-    		background-color: #fff;
+    		background-color: #F8F8F8;
     		border-bottom: 1px solid rgba(200,200,200,.7);
     		height: 40px;
     		line-height: 40px;
@@ -43,7 +43,7 @@
 		    height: 11px;
 		    background-image: url(images/icon_sorting_desc.png);
 		}
-    	.def-table-tr{text-align: center;font-family: "微软雅黑";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;}
+    	.def-table-tr{text-align: center;font-family: "微软雅黑";font-size: 14px;background-color: #fff;border-bottom: solid 1px #eee;border-left: 4px #FFF solid;}
     	.def-tal{text-align: left;padding-left: 30px;}
     	.def-tar{height: 42px;line-height: 42px;}
     	.def-tar div{width: 50%;margin: 0 auto;}
@@ -54,7 +54,12 @@
 			color: #5a5a5a;
 			margin-top: -4px;
     	}
-    	.def-tar .zhangfu{color: red;}
+    	.def-tar .zhangfu{    color: #f7f7f7;
+    background-color: red;
+    border-radius: 7px;
+    height: 35px;
+    margin-top: 3px;
+    line-height: 35px;}
     </style>
     
 </head>
@@ -165,22 +170,37 @@
 					elem.innerHTML = html;
 					
 					elem.style.backgroundColor = "#FFFFFF";
+					elem.style.borderLeftColor = (quote.ZhangFu!=undefined?(quote.ZhangFu>=0?"red":"green"):"#999");
 					setTimeout(function(){
 						elem.style.backgroundColor = "#FEF7F6";	
 					},200);
 				}
 			},
 			outputhtml:function(obj){
+				var zhangfuval = market.clearundefined(obj.ZhangFu);
+				var stylecolor,stylezxj;
+				if(zhangfuval=='--'){
+					stylecolor = "background:#FFF;color:#333;"; 
+					stylezxj = "color:#333;";
+				}else if(zhangfuval>=0){
+					stylecolor = "background:red;color:#f1f1f1;";
+					stylezxj = "color:red;";
+				}else if(zhangfuval<0){
+					stylecolor = "background:green;color:#f1f1f1;";
+					stylezxj = "color:green;";
+				}
+				zhangfuval = zhangfuval=='--'?'--':zhangfuval+'%';
+				
 				//'<div class="mui-row def-table-tr" id="'+obj.Obj+'">'+
 				return  '	<div class="mui-col-xs-4 def-tal">'+
 					    '		<span class="name">'+obj.ZhongWenJianCheng+'</span> '+
 					    '		<span class="code">'+obj.Obj+'</span> '+
 						'	</div> '+
 						'	<div class="mui-col-xs-4 def-tar">'+
-						'		<div class="ZuiXinJia">'+ market.clearundefined(obj.ZuiXinJia) +'</div>'+
+						'		<div class="ZuiXinJia" style="'+stylezxj+'">'+ market.clearundefined(obj.ZuiXinJia) +'</div>'+
 						'	</div> '+
 						'	<div class="mui-col-xs-4 def-tar">'+
-						'		<div class="zhangfu">'+market.clearundefined(obj.ZhangFu)+'%</div>'+
+						'		<div class="zhangfu" style="'+stylecolor+'">'+zhangfuval+'</div>'+
 						'	</div> ';
 				//</div>
 			},

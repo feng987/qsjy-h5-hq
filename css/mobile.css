@@ -1,5 +1,5 @@
 html{min-height:100%;height:100%;font-size:62.5%;background-color:#fff;}
-body{width:100%;height:100%;min-height:100%;-webkit-tap-highlight-color:transparent;font-family:arial,\5FAE\8F6F\96C5\9ED1,STHeiti,"Hiragino Sans GB",sans-serif;}
+body{width:100%;min-height:100%;-webkit-tap-highlight-color:transparent;font-family:arial,\5FAE\8F6F\96C5\9ED1,STHeiti,"Hiragino Sans GB",sans-serif;}
 body,a{color:#000;text-decoration:none;}
 a{color:#247aca;text-decoration:none;outline:none;}
 a:active,a:hover{color:#247aca;text-decoration:underline;}
@@ -287,10 +287,10 @@ ul.tabs li a{text-align:center;display:block;}
 .sk-board-main{float:left;width:48.1481%;text-align:center;}
 .sk-board .realprice{font-size:0.72rem;margin-bottom:0.12rem;}
 .sk-board-detail{font-size:0.24rem;}
-.sk-board-detail p{display:inline;}
+.sk-board-detail p{display:inline;color:red;}
 .sk-board .changeAmt{margin-right:0.1rem;}
 .sk-board .changeRate{}
-.sk-board-special{position:relative;float:left;width:2.6rem;margin-left:0.2rem;font-size:0;}
+.sk-board-special{position:relative;float:left;width:48%;margin-left:3%;font-size:0;}
 .sk-board-special>div{display:inline-block;margin-top:0.1rem;width:1.1rem;font-size:0.22rem;}
 .sk-board .sk-label{color:#787878;}
 .sk-board .sk-value{color:#000;}
@@ -301,8 +301,7 @@ ul.tabs li a{text-align:center;display:block;}
 .sk-board-special>div.sk-board-addstock a:focus,.sk-board-special>div.sk-board-addstock a:active,.sk-board-special>div.sk-board-addstock a:hover{text-decoration:none;outline:0;}
 .sk-board-special>div.sk-board-addstock a span{font-weight:400;font-size:0.5rem;color:#f5da5b;outline:0;}
 .sk-board-market{clear:both;margin-right:-0.3rem;}
-.sk-board-market>div{float:left;width:1.98rem;font-size:0;line-height:0.32rem;}
-.sk-board-market .sk-label{width:0.92rem;display:inline-block;font-size:0.22rem;}
+.sk-board-market .sk-label{padding-right: 5px;display:inline-block;font-size:0.22rem;}
 .sk-board-market .sk-value{display:inline-block;font-size:0.22rem;}
 .block-hr{border-top:0.08rem solid #e6e6e6;}
 .kline-box{font-size:0.24rem;}

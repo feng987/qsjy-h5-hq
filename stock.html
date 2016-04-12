@@ -12,6 +12,10 @@
     <script src="http://test.v2.api.edu3000.com/cloud-dzh/dzhauthtoken.js" type="text/javascript"></script>
 </head>
 <body>
+	<header class="mui-bar mui-bar-nav">
+	    <h1 class="mui-title" id="titlestock">--</h1>
+	</header>
+	<div class="mui-content">
 		<div class="wrapper">
 		<section class="container">
             <!-- sk-board -->
@@ -33,18 +37,18 @@
 						<a href="javascript:;" class="addstock" title="加入自选股"><span>+</span></a>
 					</div>-->
 				</div>
-				<div class="sk-board-market clearfix">
-					<div><div class="sk-label">最高</div><div class="sk-value" id="ZuiGaoJia">4.47</div></div>
-					<div><div class="sk-label">最低</div><div class="sk-value" id="ZuiDiJia">4.03</div></div>
-					<div><div class="sk-label">成交额</div><div class="sk-value" id="ChengJiaoE">4.03亿</div></div>
+				<div class="sk-board-market clearfix mui-row">
+					<div class="mui-col-xs-4"><div class="sk-label">最高</div><div class="sk-value" id="ZuiGaoJia">4.47</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">最低</div><div class="sk-value" id="ZuiDiJia">4.03</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">成交额</div><div class="sk-value" id="ChengJiaoE">4.03亿</div></div>
 
-					<div><div class="sk-label">内盘</div><div class="sk-value" id="NeiPan">27.13万</div></div>
-					<div><div class="sk-label">外盘</div><div class="sk-value" id="WaiPan">26.13万</div></div>
-					<div><div class="sk-label">总市值</div><div class="sk-value" id="ZongShiZhi">35.5亿</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">内盘</div><div class="sk-value" id="NeiPan">27.13万</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">外盘</div><div class="sk-value" id="WaiPan">26.13万</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">总市值</div><div class="sk-value" id="ZongShiZhi">35.5亿</div></div>
 
-					<div><div class="sk-label">市盈率</div><div class="sk-value" id="ShiYingLv">--</div></div>
-					<div><div class="sk-label">振幅</div><div class="sk-value" id="ZhenFu">9.38%</div></div>
-					<div><div class="sk-label">流通市值</div><div class="sk-value" id="LiuTongShiZhi">26.18亿</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">市盈率</div><div class="sk-value" id="ShiYingLv">--</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">振幅</div><div class="sk-value" id="ZhenFu">9.38%</div></div>
+					<div class="mui-col-xs-4"><div class="sk-label">流通市值</div><div class="sk-value" id="LiuTongShiZhi">26.18亿</div></div>
 				</div>
 			</div>
 			<!-- sk-board -->
@@ -68,6 +72,8 @@
             <!-- K线 -->
         </section>
         </div>
+	</div>
+		
 	
 	<script src="js/mui.min.js"></script>
     <script src="js/mui.extend.js"></script>
@@ -119,6 +125,7 @@
 				for(var i = 0;i<RepDataStkData.length;i++){
 					var quote = RepDataStkData[i];
 					
+					document.getElementById("titlestock").innerHTML = quote.ZhongWenJianCheng+" <font style='font-size:10px;'>("+ quote.Obj +")</font>";
 					document.getElementsByClassName("realprice")[0].innerText = quote.ZuiXinJia;
 					document.getElementsByClassName("changeAmt")[0].innerText = (quote.ZhangFu>0?"+"+quote.ZhangFu:quote.ZhangFu)+"%";
 					document.getElementsByClassName("changeRate")[0].innerText = (quote.ZhenFu>0?"+"+quote.ZhenFu:quote.ZhenFu)+"%"; 
@@ -162,7 +169,7 @@
     <script src="dist/scripts/main.js"></script>
 	<script type="text/javascript">
 		DataProvider.init('ws://v2.yundzh.com/ws?token='+dzh_token);
-  		var canvas = new Canvas(document.getElementById('chart'),{height:400});
+  		var canvas = new Canvas(document.getElementById('chart'),{height:350});
   		
   		function klinechart(period){
   			if("min"==period){
